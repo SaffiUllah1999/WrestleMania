@@ -13,7 +13,7 @@ export default function Landing() {
   
   return (
     <>
-      <TopNavbar />
+      <TopNavbar /> 
       <Header />
       <Services />
       <Projects />
