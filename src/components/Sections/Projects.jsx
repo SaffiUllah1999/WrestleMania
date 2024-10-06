@@ -10,7 +10,9 @@ import ProjectImg3 from "../../assets/img/projects/3.png";
 import ProjectImg4 from "../../assets/img/projects/4.png";
 import ProjectImg5 from "../../assets/img/projects/5.png";
 import ProjectImg6 from "../../assets/img/projects/6.png";
-import AddImage2 from "../../assets/img/add/add2.png";
+import AddImage2 from "../../assets/img/John Smith.png";
+
+import BackgroundImage from "../../assets/img/live_background.jpg"; // Import the imag
 
 export default function Projects() {
   return (
@@ -18,9 +20,10 @@ export default function Projects() {
       <div className="whiteBg">
         <div className="container">
           <HeaderInfo>
-            <h1 className="font40 extraBold">Our Awesome Projects</h1>
+            <h1 className="font40 extraBold">News</h1>
             <p className="font13">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+              nonumy eirmod tempor invidunt ut
               <br />
               labore et dolore magna aliquyam erat, sed diam voluptua.
             </p>
@@ -84,35 +87,15 @@ export default function Projects() {
           </div>
         </div>
       </div>
-      <div className="lightBg">
-        <div className="container">
-          <Advertising className="flexSpaceCenter">
-            <AddLeft>
-              <AddLeftInner>
-                <ImgWrapper className="flexCenter">
-                  <img className="radius8" src={AddImage2} alt="add" />
-                </ImgWrapper>
-              </AddLeftInner>
-            </AddLeft>
-            <AddRight>
-              <h4 className="font15 semiBold">A few words about company</h4>
-              <h2 className="font40 extraBold">A Study of Creativity</h2>
-              <p className="font12">
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
-                diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-              </p>
-              <ButtonsRow className="flexNullCenter" style={{ margin: "30px 0" }}>
-                <div style={{ width: "190px" }}>
-                  <FullButton title="Get Started" action={() => alert("clicked")} />
-                </div>
-                <div style={{ width: "190px", marginLeft: "15px" }}>
-                  <FullButton title="Contact Us" action={() => alert("clicked")} border />
-                </div>
-              </ButtonsRow>
-            </AddRight>
-          </Advertising>
-        </div>
-      </div>
+      <LightBgSection>
+        <Advertising className="flexSpaceCenter">
+          <div>
+            <ImgWrapper className="flexCenter">
+              <img className="radius8" src={AddImage2} alt="add" content="fit" />
+            </ImgWrapper>
+          </div>
+        </Advertising>
+      </LightBgSection>
     </Wrapper>
   );
 }
@@ -125,6 +108,19 @@ const HeaderInfo = styled.div`
     text-align: center;
   }
 `;
+
+const LightBgSection = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(${BackgroundImage}); /* Apply background image */
+  background-size: cover; /* Ensure the image covers the whole section */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repeating the image */
+  height: "100%"; /* Adjust height as needed */
+  padding: 50px 0; /* Adjust padding as needed */
+`;
+
 const Advertising = styled.div`
   padding: 100px 0;
   margin: 100px 0;

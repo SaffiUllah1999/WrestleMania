@@ -130,6 +130,7 @@ const Wrapper = styled.nav`
   top: 0;
   left: 0;
   z-index: 999;
+  transition: background-color 0.3s ease; /* Smooth transition for color change */
 `;
 const NavInner = styled.div`
   position: relative;

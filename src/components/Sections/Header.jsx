@@ -3,7 +3,7 @@ import styled from "styled-components";
 // Components
 import FullButton from "../Buttons/FullButton";
 // Assets
-import HeaderImage from "../../assets/img/header-img.png";
+import HeaderImage from "../../assets/img/tribal-chief-roman-reigns-wallpaper-ipad.jpg";
 import QuotesIcon from "../../assets/svg/Quotes";
 import Dots from "../../assets/svg/Dots";
 
@@ -14,7 +14,8 @@ export default function Header() {
         <div>
           <h1 className="extraBold font60">FIGHT LIKE A CHAMPION</h1>
           <HeaderP className="font13 semiBold">
-           Westling Mania Pakistan will be the first worldwide wrestling platform to provide wrestlers to show their skills
+            Westling Mania Pakistan will be the first worldwide wrestling
+            platform to provide wrestlers to show their skills
           </HeaderP>
           <BtnWrapper>
             <FullButton title="Get Started" />
@@ -23,17 +24,15 @@ export default function Header() {
       </LeftSide>
       <RightSide>
         <ImageWrapper>
-          <Img className="radius8" src={HeaderImage} alt="office" style={{zIndex: 9}} />
+          <Img
+            className="radius8"
+            src={HeaderImage}
+            alt="office"
+            style={{ zIndex: 9, height: "100%", width: "100%" }}
+          />
           <QuoteWrapper className="flexCenter darkBg radius8">
-            <QuotesWrapper>
-              <QuotesIcon />
-            </QuotesWrapper>
-            <div>
-              <p className="font15 whiteColor">
-                <em>Friends, such as we desire, are dreams and fables. Friendship demands the ability to do without it.</em>
-              </p>
-              <p className="font13 orangeColor textRight" style={{marginTop: '10px'}}>Ralph Waldo Emerson</p>
-            </div>
+            <QuotesWrapper></QuotesWrapper>
+            <div></div>
           </QuoteWrapper>
           <DotsWrapper>
             <Dots />
@@ -44,7 +43,6 @@ export default function Header() {
     </Wrapper>
   );
 }
-
 
 const Wrapper = styled.section`
   padding-top: 80px;
@@ -150,5 +148,3 @@ const DotsWrapper = styled.div`
     display: none;
   }
 `;
-
-
