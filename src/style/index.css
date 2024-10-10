@@ -269,3 +269,16 @@
   .whiteBg {
     background-color: #fff;
   }
+
+  .whiteText{
+    color: #ffffff;
+  }
+
+  .primaryColor {
+    background-color: #d53333;
+  }
+
+  .blackColor {
+    background-color: #000000;
+  }
+

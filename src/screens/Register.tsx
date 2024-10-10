@@ -24,8 +24,8 @@ const Register = () => {
     commonDataService
       .executeApiCall(SERVICE_ROUTE.REGISTER, Dataset)
       .then((res) => {
-        if (res.data.email) {
-          navigate("/dashboard");
+        if (res.data.status) {
+          navigate("/login");
         } else {
           alert("Error");
         }

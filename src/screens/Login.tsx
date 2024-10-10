@@ -74,7 +74,7 @@ const Login = () => {
       </div>
       <br />
       <div className={"inputContainer"}>
-        <button title="Register" type="button">
+        <button title="Register" type="button" onClick={onButtonClick}>
           <p>Login</p>
         </button>
       </div>

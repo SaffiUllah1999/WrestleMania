@@ -5,6 +5,8 @@ import BlogBox from "../Elements/BlogBox";
 import FullButton from "../Buttons/FullButton";
 import TestimonialSlider from "../Elements/TestimonialSlider";
 
+
+
 export default function Blog() {
   return (
     <Wrapper id="blog">
