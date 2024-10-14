@@ -12,7 +12,7 @@ export default function HeaderLogin() {
     <Wrapper id="home" className="container flexSpaceCenter">
       <LeftSide className="flexCenter">
         <div>
-          <h1 className="extraBold font60">FIGHT LIKE A CHAMPION</h1>
+          <h1 className="extraBold font60">Welcome </h1>
           <HeaderP className="font13 semiBold">
             Westling Mania Pakistan will be the first worldwide wrestling
             platform to provide wrestlers to show their skills

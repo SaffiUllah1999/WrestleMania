@@ -7,7 +7,7 @@ import TestimonialSlider from "../Elements/TestimonialSlider";
 import CommonDataService from "../../services/commondataservice";
 import { SERVICE_ROUTE } from "../../services/endpoints";
 
-export default function Blog() {
+export default function News_Comp() {
   const [loading, setLoading] = useState(false);
   const [dataset, setDataset] = useState();
   const commonDataService = new CommonDataService();
@@ -15,7 +15,7 @@ export default function Blog() {
   const Get_Products = () => {
     setLoading(true); // Set loading to true
     commonDataService
-      .fetchData(SERVICE_ROUTE.GET_BLOGS)
+      .fetchData(SERVICE_ROUTE.GET_ARTICLES)
       .then((res) => {
         setDataset(res?.data);
       })
@@ -47,7 +47,7 @@ export default function Blog() {
             <p className="font13">
               <br />
             </p>
-            <h1 className="font40 extraBold">Our Blog Stories</h1>
+            <h1 className="font40 extraBold">latest News</h1>
             <p className="font13">
               <br />
             </p>

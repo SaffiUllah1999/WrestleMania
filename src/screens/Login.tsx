@@ -4,7 +4,7 @@ import "../style/login.css";
 import CommonDataService from "../services/commondataservice";
 import { SERVICE_ROUTE } from "../services/endpoints";
 import { useAuth } from "../hooks/Auth";
-import loginImage from "../assets/img/login.png"; // Import the image
+import loginImage from "../assets/img/login.png"; 
 
 const Login = () => {
   const commonDataService = new CommonDataService();
@@ -13,40 +13,47 @@ const Login = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const { isAuthenticated, loginSet } = useAuth();
-
+  const { loginSet } = useAuth();
   const navigate = useNavigate();
 
-  const login = async () => {
-    // const response = await axios.post('http://192.168.5.57:3000/adminLogin', { email, password });
-    commonDataService
-      .executeApiCall(SERVICE_ROUTE.LOGIN, { email, password })
-      .then((res) => {
-        if (res.data.status) {
-          loginSet();
-          navigate("/dashboard");
-        } else {
-          alert("Login failed: ");
-        }
-      })
-      .catch(function (error) {
-        if (error) {
-          alert(JSON.stringify(error.response.data.Error));
-          console.log(JSON.stringify(error.response?.data));
-        }
-      });
+  const validateInputs = () => {
+    let valid = true;
+    setEmailError("");
+    setPasswordError("");
+
+    if (!email) {
+      setEmailError("Email is required");
+      valid = false;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      setEmailError("Email format is invalid");
+      valid = false;
+    }
+    if (!password) {
+      setPasswordError("Password is required");
+      valid = false;
+    }
+
+    return valid;
   };
 
-  const onButtonClick = () => {
-    login();
-    // You'll update this function later...
+  const login = async () => {
+    if (!validateInputs()) return;
+
+    try {
+      const res = await commonDataService.executeApiCall(SERVICE_ROUTE.LOGIN, { email, password });
+      if (res.data.status) {
+        loginSet();
+        navigate("/dashboard");
+      } else {
+        alert("Login failed: Invalid credentials");
+      }
+    } catch (error) {
+      alert(error.response ? error.response.data.Error : "An error occurred");
+    }
   };
 
   return (
-    <div
-      className={"mainContainer"}
-      style={{ backgroundImage: `url(${loginImage})` }}
-    >
+    <div className={"mainContainer"} style={{ backgroundImage: `url(${loginImage})` }}>
       <div className={"titleContainer"}>
         <div>
           <h5 style={{ fontFamily: "serif" }}>Login</h5>
@@ -60,26 +67,27 @@ const Login = () => {
           onChange={(ev) => setEmail(ev.target.value)}
           className={"inputBox"}
         />
-        <label className="errorLabel">{emailError}</label>
+        <label className="errorLabel"  style={{color:"#000"}}>{emailError}</label>
       </div>
       <br />
       <div className={"inputContainer"}>
         <input
+          type="password"
           value={password}
           placeholder="Enter your password here"
           onChange={(ev) => setPassword(ev.target.value)}
           className={"inputBox"}
         />
-        <label className="errorLabel">{passwordError}</label>
+        <label className="errorLabel" style={{color:"#000"}}>{passwordError}</label>
       </div>
       <br />
       <div className={"inputContainer"}>
-        <button title="Register" type="button" onClick={onButtonClick}>
+        <button title="Login" type="button" onClick={login}>
           <p>Login</p>
         </button>
       </div>
       <div className={"inputContainer"}>
-        <button title="Register" type="button" onClick={()=>navigate('/register')}>
+        <button title="Go to Register" type="button" onClick={() => navigate('/register')}>
           <h5>Register</h5>
         </button>
       </div>

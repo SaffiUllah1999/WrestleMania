@@ -53,10 +53,11 @@ export default function TopNavbar() {
               <Link
                 activeClass="active"
                 style={{ padding: "10px 15px" }}
-                to="home"
+                to={"Home"}
+              
+                onClick={() => navigate("/dashboard")}
                 spy={true}
                 smooth={true}
-                offset={-80}
               >
                 Home
               </Link>
@@ -65,10 +66,10 @@ export default function TopNavbar() {
               <Link
                 activeClass="active"
                 style={{ padding: "10px 15px" }}
-                to="services"
+                to={"Events"}
+                onClick={() => navigate("/Loginevents")}
                 spy={true}
                 smooth={true}
-                offset={-80}
               >
                 Events
               </Link>
@@ -77,23 +78,36 @@ export default function TopNavbar() {
               <Link
                 activeClass="active"
                 style={{ padding: "10px 15px" }}
-                to="projects"
+                // to="projects"
+                to={"News"}
+                onClick={() => navigate("/Loginnews")}
                 spy={true}
                 smooth={true}
-                offset={-80}
               >
                 News
               </Link>
             </li>
             <li className="semiBold font15 pointer">
               <Link
-                onClick={()=> navigate("/login")}
                 activeClass="active"
                 style={{ padding: "10px 15px" }}
-                to="blog"
+                // to="projects"
+                to={"News"}
+                onClick={() => navigate("/Loginblogs")}
                 spy={true}
                 smooth={true}
-                offset={-80}
+              >
+                Blogs
+              </Link>
+            </li>
+            <li className="semiBold font15 pointer">
+              <Link
+                onClick={() => navigate("/LoginAboutUs")}
+                activeClass="active"
+                style={{ padding: "10px 15px" }}
+                to="About"
+                spy={true}
+                smooth={true}
               >
                 About
               </Link>

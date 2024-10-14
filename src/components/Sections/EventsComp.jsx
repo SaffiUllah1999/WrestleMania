@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 // Components
 import ProjectBox from "../Elements/ProjectBox";
@@ -13,82 +13,66 @@ import ProjectImg6 from "../../assets/img/projects/6.png";
 import AddImage2 from "../../assets/img/John Smith.png";
 
 import BackgroundImage from "../../assets/img/live_background.jpg"; // Import the imag
+import { SERVICE_ROUTE } from "../../services/endpoints";
+import CommonDataService from "../../services/commondataservice";
 
-export default function Projects() {
+export default function EventsComp() {
+  const [loading, setLoading] = useState(false);
+  const [dataset, setDataset] = useState();
+  const commonDataService = new CommonDataService();
+
+  const Get_Products = () => {
+    setLoading(true); // Set loading to true
+    commonDataService
+      .fetchData(SERVICE_ROUTE.GET_PRODUCTS)
+      .then((res) => {
+        setDataset(res?.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false); // Set loading to false after the request
+      });
+  };
+
+  useEffect(() => {
+    Get_Products();
+  }, []);
   return (
     <Wrapper id="projects">
-        <LightBgSection>
+      <LightBgSection>
         <Advertising className="flexSpaceCenter">
           <div>
             <ImgWrapper className="flexCenter">
-              <img className="radius8" src={AddImage2} alt="add" content="fit" />
+              <img
+                className="radius8"
+                src={AddImage2}
+                alt="add"
+                content="fit"
+              />
             </ImgWrapper>
           </div>
         </Advertising>
       </LightBgSection>
       <div className="whiteBg">
         <div className="container">
-      
           <div className="row textCenter">
-            <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-              <ProjectBox
-                img={ProjectImg1}
-                title="Awesome Project"
-                text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor."
-                action={() => alert("clicked")}
-              />
-            </div>
-            <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-              <ProjectBox
-                img={ProjectImg2}
-                title="Awesome Project"
-                text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor."
-                action={() => alert("clicked")}
-              />
-            </div>
-            <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-              <ProjectBox
-                img={ProjectImg3}
-                title="Awesome Project"
-                text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor."
-                action={() => alert("clicked")}
-              />
-            </div>
-          </div>
-          <div className="row textCenter">
-            <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-              <ProjectBox
-                img={ProjectImg4}
-                title="Awesome Project"
-                text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor."
-                action={() => alert("clicked")}
-              />
-            </div>
-            <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-              <ProjectBox
-                img={ProjectImg5}
-                title="Awesome Project"
-                text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor."
-                action={() => alert("clicked")}
-              />
-            </div>
-            <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-              <ProjectBox
-                img={ProjectImg6}
-                title="Awesome Project"
-                text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor."
-                action={() => alert("clicked")}
-              />
-            </div>
-          </div>
-          <div className="row flexCenter">
-            <div style={{ margin: "50px 0", width: "200px" }}>
-              <FullButton title="Load More" action={() => alert("clicked")} />
-            </div>
+            {dataset?.map((x) => {
+              return (
+                <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                  <ProjectBox
+                    img={x?.image}
+                    title={x?.title}
+                    text={x?.description}
+                    action={() => alert("clicked")}
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
-    
     </Wrapper>
   );
 }
