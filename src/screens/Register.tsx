@@ -102,7 +102,7 @@ const Register = () => {
         </button>
       </div>
       <div className={"inputContainer"}>
-        <button style={{ backgroundColor: "#000" }} title="Register as Wrestler" type="button">
+        <button style={{ backgroundColor: "#000" }} title="Register as Wrestler" type="button" onClick={() => navigate("/Wregister")}> 
           <h5 style={{ color: "#fff" }}>Register as Wrestler?</h5>
         </button>
       </div>

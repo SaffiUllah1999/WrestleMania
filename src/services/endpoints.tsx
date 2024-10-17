@@ -2,6 +2,10 @@ export const SERVICE_ROUTE = {
   REGISTER: "/register",
   LOGIN: "/login",
 
+  WRESTLER_LOGIN:"/Wrestlerlogin",
+  WRESTLER_REGISTER:"/Wrestlerregister",
+  
+
   GET_ALL_ORDERS: "/getAllOrders",
 
   GET_ALL_USERS: "/getusers",

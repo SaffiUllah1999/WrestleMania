@@ -4,7 +4,7 @@ import "../style/login.css";
 import CommonDataService from "../services/commondataservice";
 import { SERVICE_ROUTE } from "../services/endpoints";
 import { useAuth } from "../hooks/Auth";
-import loginImage from "../assets/img/login.png"; 
+import loginImage from "../assets/img/login.png";
 
 const Login = () => {
   const commonDataService = new CommonDataService();
@@ -37,13 +37,16 @@ const Login = () => {
   };
 
   const login = async () => {
-    if (!validateInputs()) return;
+    // if (!validateInputs()) return;
 
     try {
-      const res = await commonDataService.executeApiCall(SERVICE_ROUTE.LOGIN, { email, password });
+      const res = await commonDataService.executeApiCall(SERVICE_ROUTE.LOGIN, {
+        email,
+        password,
+      });
       if (res.data.status) {
         loginSet();
-        navigate("/dashboard");
+        navigate("/dashboard", { state: { name: res?.data?.user?.name } });
       } else {
         alert("Login failed: Invalid credentials");
       }
@@ -53,10 +56,13 @@ const Login = () => {
   };
 
   return (
-    <div className={"mainContainer"} style={{ backgroundImage: `url(${loginImage})` }}>
+    <div
+      className={"mainContainer"}
+      style={{ backgroundImage: `url(${loginImage})` }}
+    >
       <div className={"titleContainer"}>
         <div>
-          <h5 style={{ fontFamily: "serif" }}>Login</h5>
+          <h5>Login</h5>
         </div>
       </div>
       <br />
@@ -67,7 +73,9 @@ const Login = () => {
           onChange={(ev) => setEmail(ev.target.value)}
           className={"inputBox"}
         />
-        <label className="errorLabel"  style={{color:"#000"}}>{emailError}</label>
+        <label className="errorLabel" style={{ color: "#000" }}>
+          {emailError}
+        </label>
       </div>
       <br />
       <div className={"inputContainer"}>
@@ -78,7 +86,9 @@ const Login = () => {
           onChange={(ev) => setPassword(ev.target.value)}
           className={"inputBox"}
         />
-        <label className="errorLabel" style={{color:"#000"}}>{passwordError}</label>
+        <label className="errorLabel" style={{ color: "#000" }}>
+          {passwordError}
+        </label>
       </div>
       <br />
       <div className={"inputContainer"}>
@@ -87,8 +97,22 @@ const Login = () => {
         </button>
       </div>
       <div className={"inputContainer"}>
-        <button title="Go to Register" type="button" onClick={() => navigate('/register')}>
+        <button
+          title="Go to Register"
+          type="button"
+          onClick={() => navigate("/register")}
+        >
           <h5>Register</h5>
+        </button>
+      </div>
+      <div className={"inputContainer"}>
+        <button
+          style={{ backgroundColor: "#000", color: "#fff" }}
+          title="Register as User"
+          type="button"
+          onClick={() => navigate("/Wlogin")}
+        >
+          Login as Wrestler?
         </button>
       </div>
     </div>

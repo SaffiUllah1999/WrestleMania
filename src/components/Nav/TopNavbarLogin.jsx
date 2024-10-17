@@ -120,7 +120,7 @@ export default function TopNavbar() {
           <UlWrapperRight className="flexNullCenter">
             <li className="semiBold font15 pointer flexCenter">
               <a
-                href="/register"
+                onClick={()=>navigate("/login")}
                 className="radius8 primaryColor whiteText"
                 style={{ padding: "10px 15px" }}
               >

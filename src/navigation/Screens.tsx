@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "../screens/Landing";
+
 import Login from "../screens/Login";
 import Register from "../screens/Register";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Dashboard from "../screens/Dashboard";
 import { AuthProvider } from "../hooks/Auth";
 import { DataProvider } from "../hooks/useData";
@@ -11,6 +11,12 @@ import Events from "../screens/Events";
 import News from "../screens/News";
 import Blogs from "../screens/Blogs";
 import Aboutus from "../screens/Aboutus";
+import WRegister from "../wrestle/WRegister";
+import WLogin from "../wrestle/WLogin";
+import Landing from "../screens/Landing";
+import WDashboard from "../wrestle/WDashboard";
+import ProtectedRouteWrestle from "../components/ProtectedWrestle";
+import EventDetails from "../screens/EventDetails";
 
 function Screens() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -22,8 +28,8 @@ function Screens() {
         <DataProvider>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/home" element={<Home />} />
+              <Route path="/" element={<Landing />} />
+              <Route path="/home" element={<Landing />} />
               <Route path="/login" element={<Login />} />
               <Route
                 path="/dashboard"
@@ -33,19 +39,29 @@ function Screens() {
                 path="/Loginevents"
                 element={<ProtectedRoute element={<Events />} />}
               />
-               <Route
+              <Route
                 path="/Loginnews"
                 element={<ProtectedRoute element={<News />} />}
               />
-                <Route
+              <Route
                 path="/Loginblogs"
                 element={<ProtectedRoute element={<Blogs />} />}
               />
-               <Route
+              <Route
                 path="/LoginAboutUs"
                 element={<ProtectedRoute element={<Aboutus />} />}
               />
+              <Route
+                path="/LoginEventDetails"
+                element={<ProtectedRoute element={<EventDetails />} />}
+              />
               <Route path="/register" element={<Register />} />
+              <Route path="/Wregister" element={<WRegister />} />
+              <Route path="/Wlogin" element={<WLogin />} />
+              <Route
+                path="/Wrestledashboard"
+                element={<ProtectedRouteWrestle element={<WDashboard />} />}
+              />
             </Routes>
           </BrowserRouter>
         </DataProvider>

@@ -1,8 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-
-
 export const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
   timeout: 50000,

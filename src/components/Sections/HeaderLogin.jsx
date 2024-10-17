@@ -6,16 +6,20 @@ import FullButton from "../Buttons/FullButton";
 import HeaderImage from "../../assets/img/tribal-chief-roman-reigns-wallpaper-ipad.jpg";
 import QuotesIcon from "../../assets/svg/Quotes";
 import Dots from "../../assets/svg/Dots";
+import { useLocation } from 'react-router-dom';
 
 export default function HeaderLogin() {
+  
+  const location = useLocation();
+  const { name } = location.state || {}; // This will give you the name or undefined
+
   return (
     <Wrapper id="home" className="container flexSpaceCenter">
       <LeftSide className="flexCenter">
         <div>
           <h1 className="extraBold font60">Welcome </h1>
-          <HeaderP className="font13 semiBold">
-            Westling Mania Pakistan will be the first worldwide wrestling
-            platform to provide wrestlers to show their skills
+          <HeaderP className="font25 semiBold">
+           {name}
           </HeaderP>
           <BtnWrapper>
             <FullButton title="Get Started" />

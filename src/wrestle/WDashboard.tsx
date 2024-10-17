@@ -6,18 +6,16 @@ import Projects from "../components/Sections/Projects";
 import Blog from "../components/Sections/Blog";
 import Pricing from "../components/Sections/Pricing";
 import HeaderLogin from "../components/Sections/HeaderLogin";
-import { useLocation } from 'react-router-dom';
+import TopNavbarLoginWrestle from "../components/Nav/TopNavbarLoginWrestle";
 
-export default function Dashboard() {
-
-  const location = useLocation();
-  const { name } = location.state || {}; // This will give you the name or undefined
-
-  console.log(name)
+export default function WDashboard({route}) {
+ 
+  // const name = route?.params?.name;
+  console.log(JSON.stringify(route))
   return (
     <>
-      <TopNavbarLogin />
-      <HeaderLogin />
+      <TopNavbarLoginWrestle/>
+      {/* <HeaderLogin  name={name}/> */}
       {/* <Projects />
       <Blog />
       <Pricing /> */}

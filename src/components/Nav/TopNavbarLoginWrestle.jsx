@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-scroll";
 // Components
-import Sidebar from "../Nav/Sidebar";
+import Sidebar from "./Sidebar";
 import Backdrop from "../Elements/Backdrop";
 // Assets
 import LogoIcon from "../../assets/svg/Logo";
@@ -10,7 +10,7 @@ import BurgerIcon from "../../assets/svg/BurgerIcon";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
 
-export default function TopNavbar() {
+export default function TopNavbarLoginWrestle() {
   const navigate = useNavigate();
   const [y, setY] = useState(window.scrollY);
   const [sidebarOpen, toggleSidebar] = useState(false);
@@ -53,10 +53,11 @@ export default function TopNavbar() {
               <Link
                 activeClass="active"
                 style={{ padding: "10px 15px" }}
-                to="home"
+                to={"Home"}
+              
+                onClick={() => navigate("/dashboard")}
                 spy={true}
                 smooth={true}
-                offset={-80}
               >
                 Home
               </Link>
@@ -65,10 +66,10 @@ export default function TopNavbar() {
               <Link
                 activeClass="active"
                 style={{ padding: "10px 15px" }}
-                to="events"
+                to={"Events"}
+                onClick={() => navigate("/Loginevents")}
                 spy={true}
                 smooth={true}
-                offset={-80}
               >
                 Events
               </Link>
@@ -77,10 +78,11 @@ export default function TopNavbar() {
               <Link
                 activeClass="active"
                 style={{ padding: "10px 15px" }}
-                to="news"
+                // to="projects"
+                to={"News"}
+                onClick={() => navigate("/Loginnews")}
                 spy={true}
                 smooth={true}
-                offset={-80}
               >
                 News
               </Link>
@@ -89,12 +91,25 @@ export default function TopNavbar() {
               <Link
                 activeClass="active"
                 style={{ padding: "10px 15px" }}
-                to="blog"
+                // to="projects"
+                to={"News"}
+                onClick={() => navigate("/Loginblogs")}
                 spy={true}
                 smooth={true}
-                offset={-80}
               >
                 Blogs
+              </Link>
+            </li>
+            <li className="semiBold font15 pointer">
+              <Link
+                onClick={() => navigate("/LoginAboutUs")}
+                activeClass="active"
+                style={{ padding: "10px 15px" }}
+                to="About"
+                spy={true}
+                smooth={true}
+              >
+                About
               </Link>
             </li>
 
@@ -103,18 +118,13 @@ export default function TopNavbar() {
             </li>
           </UlWrapper>
           <UlWrapperRight className="flexNullCenter">
-            <li className="semiBold font15 pointer">
-              <a href="/login" style={{ padding: "10px 30px 10px 0" }}>
-                Log in
-              </a>
-            </li>
             <li className="semiBold font15 pointer flexCenter">
               <a
-                href="/register"
-                className="radius8 lightBg"
+                onClick={()=>navigate("/login")}
+                className="radius8 primaryColor whiteText"
                 style={{ padding: "10px 15px" }}
               >
-                Get Started
+                Log out
               </a>
             </li>
           </UlWrapperRight>

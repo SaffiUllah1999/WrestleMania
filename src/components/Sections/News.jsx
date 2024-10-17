@@ -6,6 +6,7 @@ import FullButton from "../Buttons/FullButton";
 import TestimonialSlider from "../Elements/TestimonialSlider";
 import CommonDataService from "../../services/commondataservice";
 import { SERVICE_ROUTE } from "../../services/endpoints";
+import ProjectBox from "../Elements/ProjectBox";
 
 export default function News_Comp() {
   const [loading, setLoading] = useState(false);
@@ -31,7 +32,7 @@ export default function News_Comp() {
     Get_Products();
   }, []);
   return (
-    <Wrapper id="blog">
+    <Wrapper id="news">
       <div className="whiteBg">
         <div className="container" style={{ marginTop: "10%" }}>
           <HeaderInfo>
@@ -56,11 +57,12 @@ export default function News_Comp() {
             {dataset?.map((c) => {
               return (
                 <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                  <BlogBox
+                  <ProjectBox
                     title={c?.title}
-                    text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor."
+                    text={c?.description}
+                    img={c?.image}
                     tag="company"
-                    author="Luke Skywalker, 2 days ago"
+
                     action={() => alert("clicked")}
                   />
                 </div>
@@ -72,20 +74,6 @@ export default function News_Comp() {
               <FullButton title="Load More" action={() => alert("clicked")} />
             </div>
           </div>
-        </div>
-      </div>
-      <div className="lightBg" style={{ padding: "50px 0" }}>
-        <div className="container">
-          <HeaderInfo>
-            <h1 className="font40 extraBold">What They Say?</h1>
-            <p className="font13">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut
-              <br />
-              labore et dolore magna aliquyam erat, sed diam voluptua.
-            </p>
-          </HeaderInfo>
-          <TestimonialSlider />
         </div>
       </div>
     </Wrapper>

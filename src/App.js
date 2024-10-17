@@ -1,7 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 // Screens
-import Landing from "./screens/Landing.tsx";
 import Screens from "./navigation/Screens.tsx";
 
 export default function App() {
