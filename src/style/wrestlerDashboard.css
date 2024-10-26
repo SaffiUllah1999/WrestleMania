@@ -1,0 +1,17 @@
+
+  
+  .left-panel, .right-panel {
+    flex: 1;
+    margin: 10px;
+  }
+  
+  .right-panel .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    
+  }
+  
+  .left-panel {
+    max-width: 300px;
+  }

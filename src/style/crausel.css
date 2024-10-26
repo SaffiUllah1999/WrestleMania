@@ -1,0 +1,26 @@
+/* Custom styles for the center mode */
+.slick-slide {
+    transition: transform 0.3s ease;
+  }
+  
+  .slick-center {
+    transform: scale(1.1); /* Slightly scale the center slide */
+  }
+  
+  .slick-list {
+    padding: 0 60px; /* Adjust padding for the entire list */
+  }
+  
+  /* Media Queries for responsiveness */
+  @media (max-width: 768px) {
+    .slick-list {
+      padding: 0 40px; /* Adjust padding for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .slick-list {
+      padding: 0; /* Remove padding on very small screens */
+    }
+  }
+  

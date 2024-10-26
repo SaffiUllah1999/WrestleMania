@@ -7,6 +7,7 @@ import Blog from "../components/Sections/Blog";
 import Pricing from "../components/Sections/Pricing";
 import HeaderLogin from "../components/Sections/HeaderLogin";
 import { useLocation } from 'react-router-dom';
+import Footer from "../components/Footer";
 
 export default function Dashboard() {
 
@@ -18,6 +19,7 @@ export default function Dashboard() {
     <>
       <TopNavbarLogin />
       <HeaderLogin />
+      <Footer/>
       {/* <Projects />
       <Blog />
       <Pricing /> */}

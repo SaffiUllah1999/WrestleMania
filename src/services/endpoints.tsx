@@ -5,6 +5,7 @@ export const SERVICE_ROUTE = {
   WRESTLER_LOGIN:"/Wrestlerlogin",
   WRESTLER_REGISTER:"/Wrestlerregister",
   
+  BOOKING:"/Bookseats",
 
   GET_ALL_ORDERS: "/getAllOrders",
 

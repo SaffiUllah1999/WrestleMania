@@ -1,24 +1,20 @@
 import React from "react";
-import TopNavbarLogin from "../components/Nav/TopNavbarLogin";
-import Header from "../components/Sections/Header";
-import Services from "../components/Sections/Services";
-import Projects from "../components/Sections/Projects";
-import Blog from "../components/Sections/Blog";
-import Pricing from "../components/Sections/Pricing";
-import HeaderLogin from "../components/Sections/HeaderLogin";
+import styled from "styled-components";
 import TopNavbarLoginWrestle from "../components/Nav/TopNavbarLoginWrestle";
+import HeaderLoginWrestler from "../components/Sections/HeaderLoginWrestler";
 
-export default function WDashboard({route}) {
- 
-  // const name = route?.params?.name;
-  console.log(JSON.stringify(route))
+const Wrapper = styled.div`
+  margin: 5%; // Adjust this value as needed
+`;
+
+export default function WDashboard() {
   return (
     <>
-      <TopNavbarLoginWrestle/>
-      {/* <HeaderLogin  name={name}/> */}
-      {/* <Projects />
-      <Blog />
-      <Pricing /> */}
+      <TopNavbarLoginWrestle />
+      <Wrapper>
+        <HeaderLoginWrestler />
+      </Wrapper>
+      {/* Other components can go here */}
     </>
   );
 }

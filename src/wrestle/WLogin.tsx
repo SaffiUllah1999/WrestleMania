@@ -6,6 +6,7 @@ import { SERVICE_ROUTE } from "../services/endpoints";
 import { useAuth } from "../hooks/Auth";
 import Image from "../assets/img/wrestle.png";
 import ImageBG from "../assets/img/wrestleLogin_bg.png";
+import { useData } from "../hooks/useData";
 
 const WLogin = () => {
   const commonDataService = new CommonDataService();
@@ -14,6 +15,7 @@ const WLogin = () => {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const {wrestleData,setWrestleData}= useData()
 
   const { loginWrestlerSet } = useAuth();
   const navigate = useNavigate();
@@ -52,8 +54,8 @@ const WLogin = () => {
       if (res?.data?.status) {
         setDataset(res?.data?.user?.name);
         loginWrestlerSet();
-        console.log(res?.data?.user?.name)
-        navigate("/Wrestledashboard", { name: res?.data?.user?.name });
+        setWrestleData( res?.data?.user?.name)
+        navigate("/Wrestledashboard");
       } else {
         alert("Login failed: Invalid credentials");
       }

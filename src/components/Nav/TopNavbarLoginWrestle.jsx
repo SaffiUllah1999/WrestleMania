@@ -55,7 +55,7 @@ export default function TopNavbarLoginWrestle() {
                 style={{ padding: "10px 15px" }}
                 to={"Home"}
               
-                onClick={() => navigate("/dashboard")}
+                onClick={() => navigate("/Wrestledashboard")}
                 spy={true}
                 smooth={true}
               >
@@ -114,8 +114,18 @@ export default function TopNavbarLoginWrestle() {
             </li>
 
             <li className="semiBold font15 pointer">
-              <Link onClick>Contact</Link>
+              <Link
+                onClick={() => navigate("/WProfile")}
+                activeClass="active"
+                style={{ padding: "10px 15px" }}
+                to="About"
+                spy={true}
+                smooth={true}
+              >
+                Profile
+              </Link>
             </li>
+
           </UlWrapper>
           <UlWrapperRight className="flexNullCenter">
             <li className="semiBold font15 pointer flexCenter">

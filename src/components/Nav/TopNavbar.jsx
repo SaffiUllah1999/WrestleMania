@@ -16,11 +16,12 @@ export default function TopNavbar() {
   const [sidebarOpen, toggleSidebar] = useState(false);
 
   useEffect(() => {
-    window.addEventListener("scroll", () => setY(window.scrollY));
+    const handleScroll = () => setY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("scroll", () => setY(window.scrollY));
+      window.removeEventListener("scroll", handleScroll);
     };
-  }, [y]);
+  }, []);
 
   const Nvaigate_Login = () => {
     navigate("Login");
@@ -31,8 +32,11 @@ export default function TopNavbar() {
       <Sidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
       {sidebarOpen && <Backdrop toggleSidebar={toggleSidebar} />}
       <Wrapper
-        className="flexCenter animate whiteBg"
-        style={y > 100 ? { height: "60px" } : { height: "80px" }}
+        className="flexCenter animate"
+        style={{
+          height: y > 100 ? "60px" : "80px",
+          backgroundColor: y > 100 ? "#000" : "transparent", // Change colors based on scroll
+        }}
       >
         <NavInner className="container flexSpaceCenter">
           <Link className="pointer flexNullCenter" to="home" smooth={true}>
@@ -49,62 +53,30 @@ export default function TopNavbar() {
             <BurgerIcon />
           </BurderWrapper>
           <UlWrapper className="flexNullCenter">
+            {['home', 'events', 'news', 'HallFame', 'blog'].map((item) => (
+              <li key={item} className="semiBold font15 pointer">
+                <Link
+                  activeClass="active"
+                  style={{
+                    padding: "10px 15px",
+                    color: y > 100 ? "white" : "black", // Change text color based on scroll
+                  }}
+                  to={item}
+                  spy={true}
+                  smooth={true}
+                  offset={-80}
+                >
+                  {item.charAt(0).toUpperCase() + item.slice(1).replace("Fame", " of Fame")}
+                </Link>
+              </li>
+            ))}
             <li className="semiBold font15 pointer">
-              <Link
-                activeClass="active"
-                style={{ padding: "10px 15px" }}
-                to="home"
-                spy={true}
-                smooth={true}
-                offset={-80}
-              >
-                Home
-              </Link>
-            </li>
-            <li className="semiBold font15 pointer">
-              <Link
-                activeClass="active"
-                style={{ padding: "10px 15px" }}
-                to="events"
-                spy={true}
-                smooth={true}
-                offset={-80}
-              >
-                Events
-              </Link>
-            </li>
-            <li className="semiBold font15 pointer">
-              <Link
-                activeClass="active"
-                style={{ padding: "10px 15px" }}
-                to="news"
-                spy={true}
-                smooth={true}
-                offset={-80}
-              >
-                News
-              </Link>
-            </li>
-            <li className="semiBold font15 pointer">
-              <Link
-                activeClass="active"
-                style={{ padding: "10px 15px" }}
-                to="blog"
-                spy={true}
-                smooth={true}
-                offset={-80}
-              >
-                Blogs
-              </Link>
-            </li>
-
-            <li className="semiBold font15 pointer">
-              <Link onClick>Contact</Link>
+              <Link style={{ color: y > 100 ? "white" : "black" }}>Contact</Link>
             </li>
           </UlWrapper>
           <UlWrapperRight className="flexNullCenter">
             <li className="semiBold font15 pointer">
-              <a href="/login" style={{ padding: "10px 30px 10px 0" }}>
+              <a href="/login" style={{ padding: "10px 30px 10px 0", color: y > 100 ? 'white' : 'black' }}>
                 Log in
               </a>
             </li>
@@ -112,7 +84,10 @@ export default function TopNavbar() {
               <a
                 href="/register"
                 className="radius8 lightBg"
-                style={{ padding: "10px 15px" }}
+                style={{
+                  padding: "10px 15px",
+                  color: y > 100 ? "black" : "black", // Adjust the color here too
+                }}
               >
                 Get Started
               </a>
@@ -130,12 +105,14 @@ const Wrapper = styled.nav`
   top: 0;
   left: 0;
   z-index: 999;
-  transition: background-color 0.3s ease; /* Smooth transition for color change */
+  transition: background-color 0.3s ease, height 0.3s ease; /* Smooth transition for color change and height */
 `;
+
 const NavInner = styled.div`
   position: relative;
   height: 100%;
 `;
+
 const BurderWrapper = styled.button`
   outline: none;
   border: 0px;
@@ -147,12 +124,14 @@ const BurderWrapper = styled.button`
     display: block;
   }
 `;
+
 const UlWrapper = styled.ul`
   display: flex;
   @media (max-width: 760px) {
     display: none;
   }
 `;
+
 const UlWrapperRight = styled.ul`
   @media (max-width: 760px) {
     display: none;

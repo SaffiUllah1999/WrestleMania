@@ -5,6 +5,7 @@ import CommonDataService from "../services/commondataservice";
 import { SERVICE_ROUTE } from "../services/endpoints";
 import { useAuth } from "../hooks/Auth";
 import loginImage from "../assets/img/login.png";
+import { useData } from "../hooks/useData";
 
 const Login = () => {
   const commonDataService = new CommonDataService();
@@ -12,6 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const {userData,setUserData}= useData()
 
   const { loginSet } = useAuth();
   const navigate = useNavigate();
@@ -45,13 +47,15 @@ const Login = () => {
         password,
       });
       if (res.data.status) {
+        setUserData(res?.data?.user?.name)
         loginSet();
         navigate("/dashboard", { state: { name: res?.data?.user?.name } });
+        
       } else {
         alert("Login failed: Invalid credentials");
       }
     } catch (error) {
-      alert(error.response ? error.response.data.Error : "An error occurred");
+      alert(error?.response ? error?.response?.data?.Error : "An error occurred");
     }
   };
 

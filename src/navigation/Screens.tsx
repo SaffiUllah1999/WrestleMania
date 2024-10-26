@@ -17,6 +17,8 @@ import Landing from "../screens/Landing";
 import WDashboard from "../wrestle/WDashboard";
 import ProtectedRouteWrestle from "../components/ProtectedWrestle";
 import EventDetails from "../screens/EventDetails";
+import WProfile from "../wrestle/WProfile";
+import Faq from "../components/Faq";
 
 function Screens() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -51,10 +53,18 @@ function Screens() {
                 path="/LoginAboutUs"
                 element={<ProtectedRoute element={<Aboutus />} />}
               />
+           
+                  <Route
+                path="/Faq"
+                element={<ProtectedRoute element={<Faq />} />}
+              />
               <Route
                 path="/LoginEventDetails"
                 element={<ProtectedRoute element={<EventDetails />} />}
-              />
+              /><Route
+              path="/WProfile"
+              element={<ProtectedRoute element={<WProfile />} />}
+            />
               <Route path="/register" element={<Register />} />
               <Route path="/Wregister" element={<WRegister />} />
               <Route path="/Wlogin" element={<WLogin />} />

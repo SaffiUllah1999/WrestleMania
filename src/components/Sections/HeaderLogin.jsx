@@ -3,152 +3,98 @@ import styled from "styled-components";
 // Components
 import FullButton from "../Buttons/FullButton";
 // Assets
-import HeaderImage from "../../assets/img/tribal-chief-roman-reigns-wallpaper-ipad.jpg";
-import QuotesIcon from "../../assets/svg/Quotes";
-import Dots from "../../assets/svg/Dots";
-import { useLocation } from 'react-router-dom';
+import BackgroundVideo from "../../assets/bgVideo.mp4"; // Add your video here
+import HomeSliderHeader from "./HomeSliderHeader";
+
+const images = [
+  "https://statico.sportskeeda.com/editor/2024/09/540ce-17267113569271-1920.jpg?w=640",
+  "https://i.ytimg.com/vi/hvFTjbSMYEc/maxresdefault.jpg",
+  "https://statico.sportskeeda.com/editor/2024/09/540ce-17267113569271-1920.jpg?w=640",
+  "https://i.ytimg.com/vi/hvFTjbSMYEc/maxresdefault.jpg",
+];
 
 export default function HeaderLogin() {
-  
-  const location = useLocation();
-  const { name } = location.state || {}; // This will give you the name or undefined
-
   return (
     <Wrapper id="home" className="container flexSpaceCenter">
-      <LeftSide className="flexCenter">
-        <div>
-          <h1 className="extraBold font60">Welcome </h1>
-          <HeaderP className="font25 semiBold">
-           {name}
-          </HeaderP>
-          <BtnWrapper>
-            <FullButton title="Get Started" />
-          </BtnWrapper>
-        </div>
-      </LeftSide>
-      <RightSide>
-        <ImageWrapper>
-          <Img
-            className="radius8"
-            src={HeaderImage}
-            alt="office"
-            style={{ zIndex: 9, height: "100%", width: "100%" }}
-          />
-          <QuoteWrapper className="flexCenter darkBg radius8">
-            <QuotesWrapper></QuotesWrapper>
-            <div></div>
-          </QuoteWrapper>
-          <DotsWrapper>
-            <Dots />
-          </DotsWrapper>
-        </ImageWrapper>
-        <GreyDiv className="lightBg"></GreyDiv>
-      </RightSide>
+      <VideoWrapper>
+        <Video
+          src={BackgroundVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+      </VideoWrapper>
+      <Overlay>
+        <Title>Welcome to Wrestling Mania</Title>
+        <Subtitle>Your platform to showcase your wrestling skills.</Subtitle>
+        <BtnWrapper>
+          <FullButton title="Get Started" />
+        </BtnWrapper>
+      </Overlay>
+      <HomeSliderHeader images={images}/>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.section`
+
   padding-top: 80px;
   width: 100%;
   min-height: 840px;
+  overflow: hidden; // Prevent overflow from video
+  
   @media (max-width: 960px) {
     flex-direction: column;
   }
 `;
-const LeftSide = styled.div`
-  width: 50%;
+
+const VideoWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
-  @media (max-width: 960px) {
-    width: 100%;
-    order: 2;
-    margin: 50px 0;
-    text-align: center;
-  }
-  @media (max-width: 560px) {
-    margin: 80px 0 50px 0;
-  }
+  z-index: 0; // Behind other content
+  overflow: hidden;
 `;
-const RightSide = styled.div`
-  width: 50%;
+
+const Video = styled.video`
+  width: 100%;
   height: 100%;
+  object-fit: cover; // Ensure the video covers the entire area
+`;
+const Overlay = styled.div`
+  z-index: 10; // Ensure this is above the video
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; // Align text to the start
+  justify-content: flex-start; // Align items at the top
+  height: 100%; // Full height
+  color: white; // Change text color to white for contrast
+  text-align: left; // Align text to the left
+
   @media (max-width: 960px) {
-    width: 100%;
-    order: 1;
-    margin-top: 30px;
+    padding: 20px; // Padding on smaller screens
   }
 `;
-const HeaderP = styled.div`
-  max-width: 470px;
-  padding: 15px 0 50px 0;
-  line-height: 1.5rem;
-  @media (max-width: 960px) {
-    padding: 15px 0 50px 0;
-    text-align: center;
-    max-width: 100%;
-  }
+
+
+const Title = styled.h1`
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0;
 `;
+
+const Subtitle = styled.p`
+  font-size: 1.5rem;
+  margin: 10px 0 20px; // Margin between subtitle and button
+`;
+
 const BtnWrapper = styled.div`
   max-width: 190px;
   @media (max-width: 960px) {
     margin: 0 auto;
   }
 `;
-const GreyDiv = styled.div`
-  width: 30%;
-  height: 700px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 0;
-  @media (max-width: 960px) {
-    display: none;
-  }
-`;
-const ImageWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  position: relative;
-  z-index: 9;
-  @media (max-width: 960px) {
-    width: 100%;
-    justify-content: center;
-  }
-`;
-const Img = styled.img`
-  @media (max-width: 560px) {
-    width: 80%;
-    height: auto;
-  }
-`;
-const QuoteWrapper = styled.div`
-  position: absolute;
-  left: 0;
-  bottom: 50px;
-  max-width: 330px;
-  padding: 30px;
-  z-index: 99;
-  @media (max-width: 960px) {
-    left: 20px;
-  }
-  @media (max-width: 560px) {
-    bottom: -50px;
-  }
-`;
-const QuotesWrapper = styled.div`
-  position: absolute;
-  left: -20px;
-  top: -10px;
-`;
-const DotsWrapper = styled.div`
-  position: absolute;
-  right: -100px;
-  bottom: 100px;
-  z-index: 2;
-  @media (max-width: 960px) {
-    right: 100px;
-  }
-  @media (max-width: 560px) {
-    display: none;
-  }
-`;
+

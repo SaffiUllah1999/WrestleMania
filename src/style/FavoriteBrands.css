@@ -1,0 +1,11 @@
+.brands {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.brands img {
+  max-width: 60px;
+   margin: 10px;
+}
